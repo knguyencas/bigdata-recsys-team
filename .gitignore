@@ -1,0 +1,35 @@
+# Data and outputs live in Cloud Storage, not in git
+data/
+*.csv
+*.parquet
+*.zip
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Keys and secrets
+.env
+*.key.json
+*-credentials.json
+kaggle.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Node (web demo)
+node_modules/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+*.synctex.gz
