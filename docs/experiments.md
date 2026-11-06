@@ -10,3 +10,16 @@ Mỗi cấu hình chạy 3 lần, báo trung bình và độ lệch chuẩn.
 | E4 | CSV hay Parquet, Spark hay BigQuery? | định dạng, công cụ | dung lượng, thời gian, byte bị tính tiền | Cas (Spark), TV3 (BigQuery) |
 | E5 | API trả lời đủ nhanh không? | số request đồng thời | p50, p95 (ms) | TV4 |
 | E6 | Mô hình nào dự đoán mua hàng tốt nhất? | Logistic Regression, GBT | AUC, F1, thời gian | Cas |
+
+## Ba câu truy vấn của E4
+
+Cas chạy trên Spark, TV3 chạy trên BigQuery, cùng trên dữ liệu CSV gốc (`raw/`) và Parquet (`clean/`).
+
+| Mã | Truy vấn |
+| --- | --- |
+| q1 | Đếm số sự kiện theo `event_type` |
+| q2 | Giá trung bình của sự kiện `purchase` theo `category_l1` |
+| q3 | Số người dùng khác nhau từ ngày 2019-11-24 trở đi |
+
+Trên CSV gốc chưa có `category_l1` và `event_date`: tính `category_l1` là phần trước dấu
+chấm đầu tiên của `category_code` (trống thì `unknown`), `event_date` là ngày của `event_time`.
