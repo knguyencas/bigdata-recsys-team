@@ -16,6 +16,8 @@ request sửa file này và cả nhóm đồng ý.
 
 ## 2. Nhánh, commit, pull request
 
+Lệnh Git cho từng bước: [docs/git-workflow.md](docs/git-workflow.md).
+
 - Không push thẳng vào `main`.
 - Mỗi việc một nhánh, tên `<mã việc>-<mô tả ngắn>`, ví dụ `A1-bigquery-table`, `S2-api`.
   Mã việc lấy từ sheet phân công.

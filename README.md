@@ -16,6 +16,7 @@ Tài liệu của nhóm:
 - Ai làm gì, tiến độ, luồng bàn giao: [Sheet phân công](https://docs.google.com/spreadsheets/d/1ELORh6tE51ZjAWlIqllZc1f8X0tbDABss7m3DygP2HQ/edit)
 - Luật chung của repo: [CONTRIBUTING.md](CONTRIBUTING.md)
 - Ai giao gì cho ai, định dạng file: [docs/handoff.md](docs/handoff.md)
+- Cách đưa code lên repo (lệnh Git từng bước): [docs/git-workflow.md](docs/git-workflow.md)
 
 ## Hệ thống gồm những phần nào
 
@@ -84,6 +85,7 @@ Làm đúng thứ tự này, mỗi bước theo README của thư mục tương 
 ## Bắt đầu cho thành viên mới
 
 1. Nhận lời mời vào repo, `git clone` về máy hoặc về Cloud Shell (GCP) hay CloudShell (AWS).
+   Các lệnh cụ thể: [docs/git-workflow.md](docs/git-workflow.md).
 2. Đọc README này và [CONTRIBUTING.md](CONTRIBUTING.md).
 3. Nhận quyền vào cloud từ TV2; thông tin dự án nằm trong [docs/handoff.md](docs/handoff.md).
 4. Mở README trong thư mục của mình, làm theo danh sách việc. Mã việc khớp với sheet phân công.
