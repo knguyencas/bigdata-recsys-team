@@ -88,7 +88,36 @@ Bảng CSV và biểu đồ PNG cho E1, E4 (phía Spark), E6, EDA, đặt trong 
 
 ## TV4 giao
 
+- Định dạng API cho TV3 (mục dưới), chốt trước buổi 7.
 - Link web demo và kết quả E5 (p50, p95), cho TV5.
+
+### API trả gợi ý, giữa TV4 (backend) và TV3 (frontend)
+
+Bản nháp, TV3 và TV4 chốt ở việc S3. Trang web và API chạy chung một địa chỉ: trang web ở `/`,
+API ở `/api/...`, nên trang web gọi bằng đường dẫn tương đối.
+
+`GET /api/recommend/{user_id}`, trả về:
+
+```json
+{
+  "user_id": "512386086",
+  "source": "personal",
+  "items": [
+    {"product_id": 1004767, "category": "electronics.smartphone", "brand": "samsung", "price": 254.82}
+  ]
+}
+```
+
+- `source` là `personal` khi có gợi ý riêng cho người đó, `popular` khi người dùng không có
+  trong dữ liệu (trả danh sách của dòng `__popular__`).
+- `items` có tối đa 20 sản phẩm, đã xếp từ gợi ý tốt nhất xuống; `category` có thể là null.
+- Lỗi phía máy chủ trả mã 500 kèm `{"error": "<mô tả>"}`; trang web hiện thông báo lỗi.
+
+`GET /api/health`, trả về `{"status": "ok"}` khi API chạy bình thường.
+
+## TV3 giao TV4
+
+- Các file trang web trong `app/web/`, để TV4 đóng gói chung container với API (trước buổi 10).
 
 ## Mọi người giao TV5
 

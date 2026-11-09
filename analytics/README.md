@@ -6,7 +6,8 @@ luật chung; mục "Quy ước riêng" ở cuối chỉ bổ sung.
 ## Mục tiêu
 
 Cho thấy dữ liệu bằng dashboard và bảng 5V. Trả lời bằng số câu hỏi E4: lưu dữ liệu dạng CSV hay
-Parquet, truy vấn bằng Spark hay bằng kho SQL thì nhanh hơn, rẻ hơn.
+Parquet, truy vấn bằng Spark hay bằng kho SQL thì nhanh hơn, rẻ hơn. Làm trang web demo mà
+người dùng nhìn thấy (phần frontend), gọi API của TV4.
 
 ## Việc phải làm
 
@@ -17,6 +18,7 @@ Parquet, truy vấn bằng Spark hay bằng kho SQL thì nhanh hơn, rẻ hơn.
 | A3 | Dashboard: sự kiện theo ngày, phễu xem, giỏ, mua, danh mục, thương hiệu | S10 | Link dashboard chạy trên dữ liệu thật |
 | A4 | Bảng 5V có biểu đồ | S10 | Đã giao TV5 |
 | A5 | Viết phần phân tích dữ liệu, lựa chọn lưu trữ cho báo cáo | S11 | Đã giao TV5 |
+| A6 | Viết trang web demo (frontend), chi tiết ở [app/web/README.md](../app/web/README.md) | S10 | Trang hiển thị đúng gợi ý lấy từ API thật |
 
 Ba truy vấn chung của E4 ghi trong [docs/experiments.md](../docs/experiments.md).
 
@@ -35,6 +37,8 @@ Trước truy vấn lớn, xem trước số dữ liệu sẽ quét (dry run tr�
 
 - Nhận từ TV1: `<bucket>/clean/` và `<bucket>/reports/eda/`.
 - Nhận từ TV2: quyền vào kho SQL và dashboard.
+- Nhận từ TV4: định dạng API đã chốt (cho trang web).
+- Giao TV4: file trang web trong `app/web/` để đóng gói.
 - Giao TV5: link dashboard, bảng E4, bảng 5V, phần viết; để trong `report/figures/`.
 
 Định dạng chi tiết: [docs/handoff.md](../docs/handoff.md).

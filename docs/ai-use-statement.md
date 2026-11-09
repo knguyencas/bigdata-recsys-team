@@ -6,6 +6,6 @@ Mỗi người tự điền phần của mình trong lúc làm. Bản cuối vi�
 | --- | --- | --- | --- | --- |
 | TV1 | pipeline | | | |
 | TV2 | infra | | | |
-| TV3 | analytics | | | |
-| TV4 | app | | | |
+| TV3 | analytics, app/web | | | |
+| TV4 | app (trừ app/web) | | | |
 | TV5 | report | | | |

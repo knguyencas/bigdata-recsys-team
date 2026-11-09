@@ -28,7 +28,8 @@ Kho lưu trữ chung (bucket): raw/ → clean/ → recs/ → handoff/, metrics/,
    │  TV1 xử lý bằng Spark: làm sạch, phân tích, train mô hình
    │
    ├──► TV3: kho SQL + dashboard (đọc clean/)
-   ├──► TV4: cơ sở dữ liệu NoSQL + API + web demo (đọc handoff/)
+   ├──► TV4: cơ sở dữ liệu NoSQL + API, phần backend (đọc handoff/)
+   │       └── TV3: trang web demo, phần frontend (gọi API của TV4)
    └──► TV2: đo thời gian và chi phí (đọc metrics/, hoá đơn)
                      │
                      ▼
@@ -64,7 +65,8 @@ Train SASRec dùng Colab GPU, nằm ngoài cả hai cloud, đọc và ghi file q
 | `infra/` | TV2 | Cloud và hạ tầng | [infra/README.md](infra/README.md) |
 | `pipeline/` | TV1 | Data Engineer, Data Analyst, ML/DL | [pipeline/README.md](pipeline/README.md) |
 | `analytics/` | TV3 | Phân tích và dashboard | [analytics/README.md](analytics/README.md) |
-| `app/` | TV4 | Phục vụ gợi ý (NoSQL, API, web) | [app/README.md](app/README.md) |
+| `app/` (trừ `app/web/`) | TV4 | Backend phục vụ gợi ý (NoSQL, API, đưa lên cloud) | [app/README.md](app/README.md) |
+| `app/web/` | TV3 | Trang web demo (frontend) | [app/web/README.md](app/web/README.md) |
 | `report/` | TV5 | Báo cáo và thuyết trình | [report/README.md](report/README.md) |
 | `docs/` | Cả nhóm | Bàn giao, thí nghiệm, AI-use, biên bản họp | [docs/handoff.md](docs/handoff.md) |
 
@@ -78,7 +80,8 @@ Làm đúng thứ tự này, mỗi bước theo README của thư mục tương 
 
 1. `infra/`: dựng tài khoản, quyền, bucket; ghi thông tin vào `docs/handoff.md`.
 2. `pipeline/`: tải dữ liệu, làm sạch, phân tích, train mô hình, xuất file bàn giao.
-3. `analytics/` và `app/`: chạy song song, dùng file do `pipeline/` giao.
+3. `analytics/` và `app/`: chạy song song, dùng file do `pipeline/` giao. Trong `app/`, TV4 làm
+   API, TV3 làm trang web gọi API đó, theo định dạng API chốt trong `docs/handoff.md`.
 4. `infra/`: đo thời gian và chi phí cho E2, E3 từ số đo do `pipeline/` ghi.
 5. `report/`: gom bảng số, biểu đồ, phần viết; chạy lại cả repo theo README như người ngoài.
 
