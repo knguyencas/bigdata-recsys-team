@@ -1,13 +1,70 @@
-# infra (TV2)
+# infra/: TV2, cloud và hạ tầng
 
-Hạ tầng Google Cloud cho cả nhóm. Code, lệnh `gcloud` và ghi chú cấu hình để ở đây.
+Đọc [README gốc](../README.md) và [luật chung](../CONTRIBUTING.md) trước. Thư mục này làm theo
+luật chung; mục "Quy ước riêng" ở cuối chỉ bổ sung.
 
-- Tạo project, gắn billing (free trial hoặc credit), đặt cảnh báo ngân sách.
-- Cấp quyền IAM cho từng thành viên theo việc của họ.
-- Bật các dịch vụ: Cloud Storage, Dataproc, Compute Engine, BigQuery, Firestore, Cloud Run.
-- Tạo bucket và các thư mục chính (`raw/`, `clean/`, `handoff/`, `metrics/`, `reports/`).
-- Kiểm tra quota vCPU cho E3, chuẩn bị cấu hình cluster 1 máy, 2 worker, 3 worker.
-- Quy ước nhãn chi phí, đọc hoá đơn theo nhãn, làm bảng chi phí thật.
-- So sánh IaaS (tự dựng Spark trên VM) với PaaS (Dataproc) bằng bảng giá.
+## Mục tiêu
 
-Đầu vào và đầu ra: xem `docs/handoff.md`.
+Hạ tầng an toàn, rẻ, mọi người có đúng quyền. Trả lời bằng số: thêm dữ liệu, thêm máy thì
+nhanh hơn bao nhiêu và tốn thêm bao nhiêu (E2, E3). Lập luận vì sao chọn PaaS cho phần xử lý.
+
+## Việc phải làm
+
+| Mã | Việc | Hạn | Xong khi |
+| --- | --- | --- | --- |
+| H1 | Chọn GCP hoặc AWS; tạo project hoặc tài khoản, gắn billing, cảnh báo ngân sách 25%, 50%, 90% | Ngay | Có thông tin trong `docs/handoff.md` |
+| H2 | Cấp quyền IAM cho cả nhóm, bật các dịch vụ cần dùng | Ngay | Mỗi người đăng nhập console thấy project |
+| H3 | Tạo bucket và các thư mục, điền bảng thông tin trong `docs/handoff.md` | Ngay | Cả nhóm biết tên bucket, region |
+| H4 | Kiểm tra quota vCPU, chuẩn bị cấu hình cluster cho E3 | S10 | Quota đủ hoặc đã xin tăng |
+| H5 | E2: phân tích thời gian theo cỡ dữ liệu từ số đo của TV1 | S10 | Có bảng và biểu đồ E2 |
+| H6 | E3: dựng cluster 1 máy, 2 worker, 3 worker; tính speedup và chi phí | S10 | Có bảng speedup và chi phí mỗi lần chạy |
+| H7 | Bảng chi phí thật và ước tính toàn dự án | S11 | Đã giao TV5 |
+| H8 | So sánh IaaS (tự dựng Spark trên máy ảo) với PaaS (Spark dịch vụ) | S11 | Có bảng so sánh giá |
+| H9 | Viết Architecture, service model, cost cho báo cáo | S11 | Đã giao TV5 |
+
+## Làm trên hạ tầng
+
+| Việc | GCP | AWS |
+| --- | --- | --- |
+| Project, billing, ngân sách | Project, Billing, Budgets | Account, AWS Budgets |
+| Quyền | IAM | IAM (user hoặc role cho từng người) |
+| Bucket chung | Cloud Storage | S3 |
+| Cluster cho E3 | Dataproc, Quotas | EMR, Service Quotas |
+| Đọc chi phí theo nhãn | Billing reports theo label | Cost Explorer theo cost allocation tag |
+
+Quyền gợi ý cho từng người (đơn giản nhất là cho cả nhóm quyền Editor / PowerUser trong đồ án):
+
+| Người | Cần quyền với |
+| --- | --- |
+| TV1 | Bucket (đọc ghi), Spark cluster, máy ảo |
+| TV2 | Toàn quyền project, xem hoá đơn |
+| TV3 | Bucket (đọc), kho SQL, dashboard |
+| TV4 | Bucket (đọc), NoSQL, chạy container, kho image |
+| TV5 | Chỉ xem |
+
+## Nhận từ và giao cho
+
+- Giao cả nhóm (đầu tiên): quyền vào cloud, bảng thông tin dự án trong `docs/handoff.md`.
+- Giao TV1: cluster theo cấu hình E3, báo tên cluster trong nhóm chat.
+- Nhận từ TV1: số đo thời gian ở `<bucket>/metrics/`.
+- Giao TV5: biểu đồ E2, E3, bảng chi phí, phần viết; để trong `report/figures/`.
+
+Định dạng chi tiết: [docs/handoff.md](../docs/handoff.md).
+
+## Cấu trúc thư mục
+
+```
+infra/
+├── setup/      lệnh hoặc script dựng project, quyền, bucket (ghi lại để người khác dựng lại được)
+├── clusters/   cấu hình cluster cho E3
+└── cost/       bảng chi phí, so sánh IaaS và PaaS, notebook phân tích E2, E3
+```
+
+## Cách chạy
+
+TV2 điền khi có lệnh: dựng lại hạ tầng từ đầu theo thứ tự nào, mất khoảng bao lâu.
+
+## Quy ước riêng
+
+- Không ghi key, mật khẩu, số tài khoản ngân hàng vào thư mục này; chỉ ghi lệnh và tên tài nguyên.
+- Thêm hoặc xoá quyền của ai thì báo người đó trong nhóm chat.

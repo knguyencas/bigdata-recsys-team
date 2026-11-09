@@ -1,6 +1,7 @@
 # Người phụ trách mỗi thư mục được tự động mời review pull request.
 # Thay @ten-github bằng tên GitHub thật rồi bỏ dấu # ở đầu dòng.
 *            @knguyencas
+/pipeline/   @knguyencas
 # /infra/     @ten-github-tv2
 # /analytics/ @ten-github-tv3
 # /app/       @ten-github-tv4
