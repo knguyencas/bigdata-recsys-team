@@ -45,6 +45,11 @@ Quyền gợi ý cho từng người (đơn giản nhất là cho cả nhóm pol
 | TV4 | Bucket (đọc), NoSQL, chạy container, kho image |
 | TV5 | Chỉ xem |
 
+`PowerUserAccess` không cho tạo IAM role. EMR và ECS đều cần role, nên TV2 tạo sẵn: role mặc
+định của EMR (`EMR_DefaultRole`, `EMR_EC2_DefaultRole`) cho TV1; task execution role và
+infrastructure role của ECS Express Mode, kèm quyền đọc DynamoDB, cho TV4. Sau đó cấp thêm
+quyền `iam:PassRole` trên các role này cho TV1 và TV4.
+
 ## Nhận từ và giao cho
 
 - Giao cả nhóm (đầu tiên): quyền vào cloud, bảng thông tin dự án trong `docs/handoff.md`.
