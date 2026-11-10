@@ -39,8 +39,8 @@ bằng số mô hình nào tốt hơn và vì sao (E1, E6). Cung cấp số li�
 | Chạy Spark | EMR |
 | Train SASRec | Colab GPU, đọc và ghi file trên S3 |
 
-Code Spark viết lúc đầu cho GCP. Khi chuyển vào đây phải đổi script tạo cluster và gửi job
-(Dataproc sang EMR) và tiền tố đường dẫn (`gs://` sang `s3://`); phần xử lý Spark giữ nguyên.
+Code Spark viết lúc đầu cho GCP và đã đổi sang AWS: script tạo cluster và gửi job chạy trên EMR
+(bản `emr-7.13.0`, Spark 3.5), dữ liệu đọc và ghi trên `s3://`; phần xử lý Spark giữ nguyên.
 
 ## Nhận từ và giao cho
 
@@ -63,7 +63,7 @@ pipeline/
 └── tests/      kiểm thử
 ```
 
-Code hiện có sẽ được chuyển vào đây ở việc C4, sau khi đổi sang EMR và S3.
+Code hiện có (đã chạy được với EMR và S3) sẽ được chuyển vào đây ở việc C4.
 
 ## Cách chạy
 
