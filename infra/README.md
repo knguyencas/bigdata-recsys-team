@@ -12,8 +12,8 @@ nhanh hơn bao nhiêu và tốn thêm bao nhiêu (E2, E3). Lập luận vì sao 
 
 | Mã | Việc | Hạn | Xong khi |
 | --- | --- | --- | --- |
-| H1 | Chọn GCP hoặc AWS; tạo project hoặc tài khoản, gắn billing, cảnh báo ngân sách 25%, 50%, 90% | Ngay | Có thông tin trong `docs/handoff.md` |
-| H2 | Cấp quyền IAM cho cả nhóm, bật các dịch vụ cần dùng | Ngay | Mỗi người đăng nhập console thấy project |
+| H1 | Tạo tài khoản AWS, gắn billing hoặc credit, cảnh báo ngân sách 25%, 50%, 90% | Ngay | Có thông tin trong `docs/handoff.md` |
+| H2 | Tạo IAM user hoặc IAM Identity Center cho từng người, cấp quyền | Ngay | Mỗi người đăng nhập được console |
 | H3 | Tạo bucket và các thư mục, điền bảng thông tin trong `docs/handoff.md` | Ngay | Cả nhóm biết tên bucket, region |
 | H4 | Kiểm tra quota vCPU, chuẩn bị cấu hình cluster cho E3 | S10 | Quota đủ hoặc đã xin tăng |
 | H5 | E2: phân tích thời gian theo cỡ dữ liệu từ số đo của TV1 | S10 | Có bảng và biểu đồ E2 |
@@ -24,20 +24,23 @@ nhanh hơn bao nhiêu và tốn thêm bao nhiêu (E2, E3). Lập luận vì sao 
 
 ## Làm trên hạ tầng
 
-| Việc | GCP | AWS |
-| --- | --- | --- |
-| Project, billing, ngân sách | Project, Billing, Budgets | Account, AWS Budgets |
-| Quyền | IAM | IAM (user hoặc role cho từng người) |
-| Bucket chung | Cloud Storage | S3 |
-| Cluster cho E3 | Dataproc, Quotas | EMR, Service Quotas |
-| Đọc chi phí theo nhãn | Billing reports theo label | Cost Explorer theo cost allocation tag |
+| Việc | Dịch vụ AWS |
+| --- | --- |
+| Tài khoản, billing, ngân sách | AWS account, AWS Budgets |
+| Quyền | IAM (mỗi người một user hoặc dùng IAM Identity Center) |
+| Bucket chung | S3 |
+| Cluster cho E3 | EMR; Service Quotas để xem và xin tăng giới hạn vCPU |
+| Đọc chi phí theo tag | Cost Explorer; bật tag `owner`, `exp` thành cost allocation tag |
 
-Quyền gợi ý cho từng người (đơn giản nhất là cho cả nhóm quyền Editor / PowerUser trong đồ án):
+Tag chỉ hiện trong Cost Explorer sau khi bật thành cost allocation tag, và chỉ tính cho chi phí
+phát sinh từ lúc bật, nên bật ngay ở H1.
+
+Quyền gợi ý cho từng người (đơn giản nhất là cho cả nhóm policy `PowerUserAccess` trong đồ án):
 
 | Người | Cần quyền với |
 | --- | --- |
 | TV1 | Bucket (đọc ghi), Spark cluster, máy ảo |
-| TV2 | Toàn quyền project, xem hoá đơn |
+| TV2 | Toàn quyền tài khoản, xem hoá đơn |
 | TV3 | Bucket (đọc), kho SQL, dashboard |
 | TV4 | Bucket (đọc), NoSQL, chạy container, kho image |
 | TV5 | Chỉ xem |
@@ -55,7 +58,7 @@ Quyền gợi ý cho từng người (đơn giản nhất là cho cả nhóm quy
 
 ```
 infra/
-├── setup/      lệnh hoặc script dựng project, quyền, bucket (ghi lại để người khác dựng lại được)
+├── setup/      lệnh hoặc script dựng tài khoản, quyền, bucket (ghi lại để người khác dựng lại được)
 ├── clusters/   cấu hình cluster cho E3
 └── cost/       bảng chi phí, so sánh IaaS và PaaS, notebook phân tích E2, E3
 ```

@@ -22,8 +22,8 @@ Thứ tự làm:
 
 ## Làm trên hạ tầng
 
-Không cần tạo dịch vụ cloud riêng. Trang web chạy chung container với API của TV4 (Cloud Run
-trên GCP hoặc App Runner trên AWS), cùng một địa chỉ: trang web ở `/`, API ở `/api/...`.
+Không cần tạo dịch vụ cloud riêng. Trang web chạy chung container với API của TV4 (ECS
+Express Mode trên AWS), cùng một địa chỉ: trang web ở `/`, API ở `/api/...`.
 
 ## Nhận từ và giao cho
 

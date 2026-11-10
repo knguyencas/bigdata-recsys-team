@@ -38,25 +38,27 @@ Kho lưu trữ chung (bucket): raw/ → clean/ → recs/ → handoff/, metrics/,
 TV2 dựng và quản lý toàn bộ hạ tầng phía dưới: tài khoản, quyền, bucket, cluster.
 ```
 
-## Chọn cloud: GCP hoặc AWS
+## Cloud: AWS
 
-TV2 chọn một nhà cung cấp trước khi ai bắt đầu làm (việc H1), rồi ghi vào
-[docs/handoff.md](docs/handoff.md). Cả nhóm dùng chung một cloud, không trộn hai bên.
-Mọi README trong repo ghi dịch vụ của cả hai bên theo bảng này:
+Nhóm đã chốt dùng AWS. TV2 ghi Account ID, region và tên bucket vào
+[docs/handoff.md](docs/handoff.md). Các dịch vụ dùng trong đồ án:
 
-| Dùng để | GCP | AWS |
-| --- | --- | --- |
-| Lưu file (bucket) | Cloud Storage (`gs://`) | S3 (`s3://`) |
-| Máy ảo | Compute Engine | EC2 |
-| Chạy Spark | Dataproc | EMR |
-| Truy vấn SQL trên file | BigQuery | Athena (kèm Glue Data Catalog) |
-| Dashboard | Looker Studio | QuickSight |
-| Cơ sở dữ liệu NoSQL | Firestore | DynamoDB |
-| Chạy API bằng container | Cloud Run (image ở Artifact Registry) | App Runner (image ở ECR) |
-| Quyền truy cập | IAM | IAM |
-| Ngân sách, chi phí | Budgets, Billing reports theo nhãn | AWS Budgets, Cost Explorer theo tag |
+| Dùng để | Dịch vụ AWS |
+| --- | --- |
+| Lưu file (bucket) | S3 (`s3://`) |
+| Máy ảo | EC2 |
+| Chạy Spark | EMR |
+| Truy vấn SQL trên file | Athena (kèm Glue Data Catalog) |
+| Dashboard | Quick Sight (trước đây tên là QuickSight) |
+| Cơ sở dữ liệu NoSQL | DynamoDB |
+| Chạy API và trang web bằng container | ECS Express Mode trên Fargate (image ở ECR) |
+| Quyền truy cập | IAM |
+| Ngân sách, chi phí | AWS Budgets, Cost Explorer theo tag |
 
-Train SASRec dùng Colab GPU, nằm ngoài cả hai cloud, đọc và ghi file qua bucket.
+Không dùng App Runner: AWS ngừng nhận khách hàng mới cho App Runner từ 30/4/2026 và khuyên
+chuyển sang ECS Express Mode.
+
+Train SASRec dùng Colab GPU, nằm ngoài AWS, đọc và ghi file trên S3.
 
 ## Thư mục và người phụ trách
 
@@ -87,7 +89,7 @@ Làm đúng thứ tự này, mỗi bước theo README của thư mục tương 
 
 ## Bắt đầu cho thành viên mới
 
-1. Nhận lời mời vào repo, `git clone` về máy hoặc về Cloud Shell (GCP) hay CloudShell (AWS).
+1. Nhận lời mời vào repo, `git clone` về máy hoặc về AWS CloudShell.
    Các lệnh cụ thể: [docs/git-workflow.md](docs/git-workflow.md).
 2. Đọc README này và [CONTRIBUTING.md](CONTRIBUTING.md).
 3. Nhận quyền vào cloud từ TV2; thông tin dự án nằm trong [docs/handoff.md](docs/handoff.md).

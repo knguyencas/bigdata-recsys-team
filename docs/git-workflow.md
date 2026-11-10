@@ -24,8 +24,8 @@ Repo: https://github.com/knguyencas/bigdata-recsys-team (private, chỉ người
    cd bigdata-recsys-team
    ```
 
-   Lần đầu push, Git trên Windows và macOS mở cửa sổ đăng nhập GitHub. Trên Cloud Shell
-   (GCP) hay CloudShell (AWS) thì đăng nhập bằng personal access token: GitHub > Settings >
+   Lần đầu push, Git trên Windows và macOS mở cửa sổ đăng nhập GitHub. Trên AWS
+   CloudShell thì đăng nhập bằng personal access token: GitHub > Settings >
    Developer settings > Personal access tokens, quyền `repo`; dán token khi Git hỏi mật khẩu.
 
 ## Mỗi lần làm một việc

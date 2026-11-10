@@ -26,7 +26,7 @@ lệnh nào lỗi, chỗ nào khó hiểu thì ghi lại và báo người phụ
 ## Làm trên hạ tầng
 
 Chỉ cần quyền xem: mở bucket, dashboard, console để chụp hình cho báo cáo. Với R7 thì cần
-Cloud Shell (GCP) hoặc CloudShell (AWS) để chạy lệnh.
+AWS CloudShell để chạy lệnh.
 
 ## Nhận từ và giao cho
 

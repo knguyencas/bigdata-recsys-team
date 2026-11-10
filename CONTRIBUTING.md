@@ -27,11 +27,11 @@ Lệnh Git cho từng bước: [docs/git-workflow.md](docs/git-workflow.md).
 
 ## 3. Cloud và hạ tầng
 
-- Cả nhóm dùng một cloud do TV2 chọn (GCP hoặc AWS), ghi trong [docs/handoff.md](docs/handoff.md).
-- Tên project hoặc tài khoản, region, tên bucket chỉ ghi ở `docs/handoff.md`. Code không ghi
+- Cả nhóm dùng AWS. Thông tin tài khoản ghi trong [docs/handoff.md](docs/handoff.md).
+- Account ID, region, tên bucket chỉ ghi ở `docs/handoff.md`. Code không ghi
   cứng các giá trị này; mỗi thư mục đọc chúng từ file cấu hình hoặc biến môi trường của mình.
 - Mỗi người dùng tài khoản IAM của chính mình, không chia sẻ key hay mật khẩu.
-- Mọi cluster, máy ảo, dịch vụ đều gắn nhãn (GCP label hoặc AWS tag) `owner=<tv1..tv5>` và
+- Mọi cluster, máy ảo, dịch vụ đều gắn tag `owner=<tv1..tv5>` và
   `exp=<mã thí nghiệm hoặc dev>`, để đọc hoá đơn theo người và theo thí nghiệm.
 - Ai tạo cluster hoặc máy ảo thì người đó xoá ngay khi chạy xong.
 - Thử trên dữ liệu nhỏ và cấu hình nhỏ trước, chạy toàn bộ dữ liệu sau.

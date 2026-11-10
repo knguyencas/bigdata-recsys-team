@@ -33,14 +33,19 @@ lâu), p95 là thời gian mà 95% số lần hỏi nhanh hơn (5% chậm nhất
 
 ## Làm trên hạ tầng
 
-| Việc | GCP | AWS |
-| --- | --- | --- |
-| Cơ sở dữ liệu NoSQL | Firestore (chế độ Native) | DynamoDB |
-| Kho image container | Artifact Registry (build bằng Cloud Build) | ECR |
-| Chạy API và trang web | Cloud Run | App Runner |
-| Đọc file gợi ý | Cloud Storage | S3 |
+| Việc | Dịch vụ AWS |
+| --- | --- |
+| Cơ sở dữ liệu NoSQL | DynamoDB (chế độ on-demand, khoá chính `user_id`) |
+| Kho image container | ECR |
+| Chạy API và trang web | ECS Express Mode trên Fargate |
+| Đọc file gợi ý | S3 |
 
-Nạp thử vài trăm dòng trước khi nạp cả file, vì cả hai bên đều tính tiền theo số lượt ghi.
+Không dùng App Runner: AWS ngừng nhận khách hàng mới cho App Runner từ 30/4/2026 và khuyên
+chuyển sang ECS Express Mode. ECS Express Mode tự tạo service Fargate, load balancer có HTTPS
+và tự co giãn. Load balancer và Fargate tính tiền theo giờ kể cả khi không ai dùng, nên chỉ bật
+khi thử, demo và đo E5, xong thì xoá service.
+
+Nạp thử vài trăm dòng trước khi nạp cả file, vì DynamoDB tính tiền theo số lượt ghi.
 
 ## Nhận từ và giao cho
 

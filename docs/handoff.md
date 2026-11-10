@@ -7,15 +7,15 @@ thì mở pull request và được người nhận đồng ý (xem [luật chun
 
 | Mục | Giá trị |
 | --- | --- |
-| Cloud | GCP hoặc AWS: |
-| Project ID (GCP) hoặc Account ID (AWS) | |
+| Cloud | AWS |
+| Account ID | |
 | Region | |
 | Bucket | |
 | Link web demo (TV4 điền) | |
 | Link dashboard (TV3 điền) | |
-| Nhãn chi phí | `owner=<tv1..tv5>`, `exp=<mã thí nghiệm hoặc dev>` |
+| Tag chi phí | `owner=<tv1..tv5>`, `exp=<mã thí nghiệm hoặc dev>` |
 
-Trong file này `<bucket>/` nghĩa là `gs://<tên bucket>/` trên GCP hoặc `s3://<tên bucket>/` trên AWS.
+Trong file này `<bucket>/` nghĩa là `s3://<tên bucket>/`.
 
 ## Ai ghi vào đâu trên bucket
 

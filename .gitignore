@@ -1,4 +1,4 @@
-# Data and outputs live in Cloud Storage, not in git
+# Data and outputs live in S3, not in git
 data/
 *.csv
 *.parquet

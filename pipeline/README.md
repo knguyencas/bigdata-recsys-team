@@ -32,15 +32,15 @@ bằng số mô hình nào tốt hơn và vì sao (E1, E6). Cung cấp số li�
 
 ## Làm trên hạ tầng
 
-| Việc | GCP | AWS |
-| --- | --- | --- |
-| Tải dữ liệu Kaggle | Compute Engine (máy ảo tạm, xoá sau) | EC2 (máy ảo tạm, xoá sau) |
-| Lưu dữ liệu | Cloud Storage | S3 |
-| Chạy Spark | Dataproc | EMR |
-| Train SASRec | Colab GPU | Colab GPU |
+| Việc | Dịch vụ |
+| --- | --- |
+| Tải dữ liệu Kaggle | EC2 (máy ảo tạm, xoá sau) |
+| Lưu dữ liệu | S3 |
+| Chạy Spark | EMR |
+| Train SASRec | Colab GPU, đọc và ghi file trên S3 |
 
-Code Spark chạy được trên cả hai bên. Phần phải đổi nếu nhóm chọn AWS: script tạo cluster và
-gửi job (Dataproc sang EMR), và tiền tố đường dẫn (`gs://` sang `s3://`).
+Code Spark viết lúc đầu cho GCP. Khi chuyển vào đây phải đổi script tạo cluster và gửi job
+(Dataproc sang EMR) và tiền tố đường dẫn (`gs://` sang `s3://`); phần xử lý Spark giữ nguyên.
 
 ## Nhận từ và giao cho
 
@@ -63,7 +63,7 @@ pipeline/
 └── tests/      kiểm thử
 ```
 
-Code hiện có (viết cho GCP) sẽ được chuyển vào đây ở việc C4.
+Code hiện có sẽ được chuyển vào đây ở việc C4, sau khi đổi sang EMR và S3.
 
 ## Cách chạy
 

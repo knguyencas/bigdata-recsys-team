@@ -24,14 +24,15 @@ Ba truy vấn chung của E4 ghi trong [docs/experiments.md](../docs/experiments
 
 ## Làm trên hạ tầng
 
-| Việc | GCP | AWS |
-| --- | --- | --- |
-| Kho SQL đọc file trên bucket | BigQuery (bảng ngoài và bảng nạp vào) | Athena (bảng khai báo trong Glue Data Catalog) |
-| Số đo cho E4 | Thời gian, bytes billed trong lịch sử truy vấn | Thời gian, data scanned trong lịch sử truy vấn |
-| Dashboard | Looker Studio | QuickSight |
+| Việc | Dịch vụ AWS |
+| --- | --- |
+| Kho SQL đọc file trên S3 | Athena, bảng khai báo trong Glue Data Catalog (một bảng đọc CSV ở `raw/`, một bảng đọc Parquet ở `clean/`) |
+| Số đo cho E4 | Thời gian chạy và data scanned trong lịch sử truy vấn Athena (Athena tính tiền theo dung lượng quét) |
+| Dashboard | Quick Sight (trước đây tên là QuickSight), nguồn là bảng Athena |
 
-Trước truy vấn lớn, xem trước số dữ liệu sẽ quét (dry run trên BigQuery, hoặc chạy thử có
-`LIMIT` và xem data scanned trên Athena).
+Trước truy vấn lớn, chạy thử có `LIMIT` và xem data scanned. Quick Sight chỉ miễn phí trong
+thời gian dùng thử (khoảng 30 ngày, kiểm tra lại trên trang giá của AWS), nên bật nó khi đã có
+dữ liệu sạch, để còn hạn đến buổi 10 và buổi 11.
 
 ## Nhận từ và giao cho
 

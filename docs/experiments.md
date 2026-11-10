@@ -1,14 +1,13 @@
 # Kế hoạch thí nghiệm
 
-Mỗi cấu hình chạy 3 lần, báo trung bình và độ lệch chuẩn. Tên dịch vụ ghi theo cả GCP và AWS;
-nhóm dùng bên nào thì đo trên bên đó.
+Mỗi cấu hình chạy 3 lần, báo trung bình và độ lệch chuẩn. Mọi thí nghiệm đo trên AWS.
 
 | Mã | Câu hỏi | Thay đổi | Đo | Ai làm |
 | --- | --- | --- | --- | --- |
 | E1 | Phương pháp nào gợi ý tốt nhất, tốn bao nhiêu tính toán? | Popularity, Item-CF, ALS, SASRec | Recall@K, NDCG@K, coverage, thời gian | TV1 |
 | E2 | Thời gian chạy tăng thế nào khi dữ liệu tăng? | subset 10, 25, 50, 100% | thời gian từng bước | TV1 chạy, TV2 phân tích |
 | E3 | Thêm máy nhanh hơn bao nhiêu, có đáng tiền không? | 1 máy, 2 worker, 3 worker | thời gian, speedup, tiền thật | TV2 dựng cluster và tính tiền, TV1 chạy |
-| E4 | CSV hay Parquet, Spark hay kho SQL (BigQuery hoặc Athena)? | định dạng, công cụ | dung lượng, thời gian, dung lượng bị tính tiền | TV1 (Spark), TV3 (kho SQL) |
+| E4 | CSV hay Parquet, Spark (EMR) hay Athena? | định dạng, công cụ | dung lượng, thời gian, dung lượng bị tính tiền | TV1 (Spark), TV3 (kho SQL) |
 | E5 | API trả lời đủ nhanh không? | số request đồng thời | p50, p95 (ms) | TV4 |
 | E6 | Mô hình nào dự đoán mua hàng tốt nhất? | Logistic Regression, GBT | AUC, F1, thời gian | TV1 |
 
